@@ -1,0 +1,14 @@
+# /etc/systemd/system/site.service
+[Unit]
+Description=uWSGI instance to serve pi site
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/pisite
+Environment="PATH=/var/www/pisite/env/bin"
+ExecStart=/var/www/pisite/env/bin/uwsgi --ini pisite.ini
+
+[Install]
+WantedBy=multi-user.target
